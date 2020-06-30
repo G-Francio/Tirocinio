@@ -1,5 +1,5 @@
 include("/home/francio-pc/tesi/JuliaScript/modFitsIO.jl")
-using DataFrames, DataFramesMeta
+using DataFrames, .fitsIO, DataFramesMeta
 
 # Legge dal dump tutti le informazioni extra
 f = open("/home/francio-pc/path_update.txt", "w")

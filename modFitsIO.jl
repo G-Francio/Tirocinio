@@ -997,12 +997,12 @@ module fitsIO
         smoothed_spec = rebin(new_wave, spec)
         spline = Spline1D(smoothed_spec[!, :wave], smoothed_spec[!, :flux])
         spec[!, :flux] ./= spline(normalize_at)
-        spec[!, :wpix] ./= spline(normalize_at)
+        #spec[!, :wpix] ./= spline(normalize_at)
         #spec[!, :flux] ./= normalizing_flux(spec, normalize_at, step)
         #spec[!, :wpix] ./= normalizing_flux(spec, normalize_at, step)
 
         return spec
-    end #QUESTA A POSTO, NON SERVONO MODIFICHE DI SORTA.
+    end
 
     # ------------------------------ ** ------------------------------ #
 
@@ -1022,8 +1022,8 @@ module fitsIO
     function rebin(new_wave::AbstractVector, spec::DataFrame)
         wave = spec[:, :wave]
         flux = spec[:, :flux]
-        dw = (wave[2] - wave[1])
-        ndw = (new_wave[2] - new_wave[1])
+        dw = (wave[2] - wave[1])/2
+        ndw = (new_wave[2] - new_wave[1])/2
 
         transform_matrix = zeros(Float64, (length(new_wave), length(wave)))
         sum_check = ndw/dw

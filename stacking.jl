@@ -1,5 +1,5 @@
 include("/home/francio-pc/tesi/JuliaScript/modFitsIO.jl")
-using Statistics, DataFrames, Gnuplot
+using Statistics, .fitsIO, DataFrames, Gnuplot
 
 function open_(str)
     df = create_dataframe(str, 'f')
